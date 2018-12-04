@@ -225,7 +225,11 @@ impl<T: EmptyState> State<(), StateEvent> for T {
     }
 }
 
-/// A simple `State` trait. It contains `GameData` as its `StateData` and no custom `StateEvent`.
+/// A simple trait, that is a shortcut implementation of [State](trait.State.html)
+/// using [GameData](struct.GameData.html) and [StateEvent](enum.StateEvent.html).
+///
+/// The [update](#method.update) method automatically calls [`data.data.update()`](struct.GameData.html#method.update),
+/// so you should not call it yourself.
 pub trait SimpleState<'a, 'b> {
     /// Executed when the game state begins.
     fn on_start(&mut self, _data: StateData<'_, GameData<'_, '_>>) {}
